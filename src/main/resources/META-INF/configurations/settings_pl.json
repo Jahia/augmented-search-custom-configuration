@@ -1,0 +1,8 @@
+{
+  "requires": "analysis-stempel",
+  "analyzer": "polish",
+  "stopwords": {
+    "type": "polish_stop"
+  },
+  "stemmer": "polish_stem"
+}

@@ -1,0 +1,222 @@
+{
+  "properties": {
+    "jgql:customProp": {
+      "type": "keyword",
+      "store": true
+    },
+    "jgql:link": {
+      "type": "keyword",
+      "store": true
+    },
+    "jgql:nodes": {
+      "properties": {
+        "jgql:all": {
+          "copy_to": "jgql:content"
+        },
+        "jgql:keywords": {
+          "copy_to": "jgql:metadata"
+        },
+        "jgql:tags": {
+          "copy_to": "jgql:metadata"
+        },
+        "jgql:displayableName": {
+          "copy_to": "jgql:main"
+        },
+        "jgql:nodeType": {
+          "copy_to": "jgql:agg_node_types"
+        },
+        "jgql:categorized": {
+          "type": "nested",
+          "properties": {
+            "uuid": {
+              "type": "keyword"
+            },
+            "key": {
+              "type": "keyword"
+            },
+            "title": {
+              "type": "keyword",
+              "copy_to": [
+                "jgql:metadata",
+                "jgql:categories"
+              ]
+            },
+            "path": {
+              "type": "text",
+              "copy_to": [
+                "jgql:categories_path"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "jgql:categorized": {
+      "type": "nested",
+      "properties": {
+        "uuid": {
+          "type": "keyword"
+        },
+        "key": {
+          "type": "keyword"
+        },
+        "title": {
+          "type": "keyword",
+          "copy_to": [
+            "jgql:metadata",
+            "jgql:categories"
+          ]
+        },
+        "path": {
+          "type": "text",
+          "copy_to": [
+            "jgql:categories_path"
+          ]
+        }
+      }
+    },
+    "jgql:all": {
+      "copy_to": "jgql:content"
+    },
+    "jgql:keywords": {
+      "copy_to": "jgql:metadata"
+    },
+    "jgql:categories_path": {
+      "type": "text",
+      "fields": {
+        "facet": {
+          "type":  "text",
+          "analyzer": "category_path_analyzer",
+          "fielddata": "true"
+        }
+      }
+    },
+    "jgql:tags": {
+      "copy_to": "jgql:metadata"
+    },
+    "jgql:displayableName": {
+      "copy_to": "jgql:main"
+    },
+    "jgql:nodePath": {
+      "fields": {
+        "hierarchy": {
+          "type": "text",
+          "analyzer": "path_hierarchy_analyzer"
+        }
+      }
+    },
+    "jgql:nodeType": {
+      "copy_to": "jgql:agg_node_types"
+    },
+    "jgql:agg_node_types": {
+      "type": "keyword"
+    },
+    "jgql:main": {
+      "type": "text",
+      "position_increment_gap": 100,
+      "analyzer": "text_base",
+      "index_options": "offsets",
+      "term_vector": "with_positions_offsets",
+      "store": true,
+      "fields": {
+        "ngram": {
+          "type": "text",
+          "term_vector": "with_positions_offsets",
+          "index_options": "offsets",
+          "analyzer": "main_analyzer",
+          "search_analyzer": "text_base"
+        },
+        "stem": {
+          "type": "text",
+          "term_vector": "with_positions_offsets",
+          "index_options": "offsets",
+          "analyzer": "text_stem",
+          "position_increment_gap": 100
+        },
+        "phrase": {
+          "type": "text",
+          "analyzer": "phrase_shingle_analyzer",
+          "term_vector": "with_positions_offsets",
+          "index_options": "offsets",
+          "position_increment_gap": 100
+        }
+      }
+    },
+    "jgql:metadata": {
+      "type": "text",
+      "analyzer": "keyword_base",
+      "index_options": "offsets",
+      "term_vector": "with_positions_offsets",
+      "position_increment_gap": 100,
+      "store": true,
+      "fields": {
+        "ngram": {
+          "type": "text",
+          "term_vector": "with_positions_offsets",
+          "index_options": "offsets",
+          "analyzer": "metadata_analyzer",
+          "search_analyzer": "text_base"
+        },
+        "phrase": {
+          "type": "text",
+          "analyzer": "phrase_shingle_analyzer",
+          "term_vector": "with_positions_offsets",
+          "index_options": "offsets",
+          "position_increment_gap": 100
+        },
+        "stem": {
+          "type": "text",
+          "analyzer": "stemmed_and_unstemmed",
+          "term_vector": "with_positions_offsets",
+          "index_options": "offsets",
+          "position_increment_gap": 100
+        },
+        "keyword": {
+          "type": "keyword",
+          "store": true
+        }
+      }
+    },
+    "jgql:content": {
+      "type": "text",
+      "index_options": "offsets",
+      "term_vector": "with_positions_offsets",
+      "position_increment_gap": 100,
+      "analyzer": "text_base",
+      "store": true,
+      "fields": {
+        "ngram": {
+          "type": "text",
+          "term_vector": "with_positions_offsets",
+          "index_options": "offsets",
+          "analyzer": "main_analyzer",
+          "search_analyzer": "text_base",
+          "store": true
+        },
+        "stem": {
+          "type": "text",
+          "term_vector": "with_positions_offsets",
+          "index_options": "offsets",
+          "analyzer": "text_stem",
+          "position_increment_gap": 100,
+          "store": true
+        },
+        "phrase": {
+          "type": "text",
+          "analyzer": "phrase_shingle_analyzer",
+          "term_vector": "with_positions_offsets",
+          "index_options": "offsets",
+          "position_increment_gap": 100,
+          "store": true
+        }
+      }
+    },
+    "jgql:mimeType": {
+      "fields": {
+        "keyword": {
+          "type": "keyword"
+        }
+      }
+    }
+  }
+}

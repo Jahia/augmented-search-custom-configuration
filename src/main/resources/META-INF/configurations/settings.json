@@ -1,0 +1,249 @@
+{
+  "search" : {
+    "slowlog" : {
+      "level" : "debug",
+      "threshold" : {
+        "fetch" : {
+          "warn" : "1000ms",
+          "trace" : "200ms",
+          "debug" : "300ms",
+          "info" : "800ms"
+        },
+        "query" : {
+          "warn" : "2000ms",
+          "trace" : "500ms",
+          "debug" : "1000ms",
+          "info" : "1500ms"
+        }
+      }
+    }
+  },
+  "indexing" : {
+    "slowlog" : {
+      "threshold" : {
+        "index" : {
+          "warn" : "10s",
+          "trace" : "500ms",
+          "debug" : "2s",
+          "info" : "5s"
+        }
+      }
+    }
+  },
+  "analysis": {
+    "filter": {
+      "phrase_shingle": {
+        "max_shingle_size": "3",
+        "min_shingle_size": "2",
+        "output_unigrams": "true",
+        "type": "shingle"
+      },
+      "i18n-stop-words-filter": {
+        "type": "stop",
+        "stopwords": "_english_"
+      },
+      "custom-filter": {
+        "type": "stop",
+        "stopwords": "_english_"
+      },
+      "i18n-stem-filter": {
+        "type": "stemmer",
+        "name": "english"
+      },
+      "delimiter": {
+        "split_on_numerics": true,
+        "generate_word_parts": true,
+        "preserve_original": false,
+        "catenate_words": true,
+        "generate_number_parts": true,
+        "catenate_all": true,
+        "split_on_case_change": true,
+        "type": "word_delimiter_graph",
+        "catenate_numbers": true,
+        "stem_english_possessive": true
+      },
+      "unique_stem": {
+        "type": "unique",
+        "only_on_same_position": true
+      },
+      "ascii_folding": {
+        "type": "asciifolding",
+        "preserve_original": true
+      },
+      "catalan_elision": {
+        "type": "elision",
+        "articles": [
+          "d",
+          "l",
+          "m",
+          "n",
+          "s",
+          "t"
+        ]
+      },
+      "french_elision": {
+        "type": "elision",
+        "articles_case": true,
+        "articles": [
+          "l",
+          "m",
+          "t",
+          "qu",
+          "n",
+          "s",
+          "j",
+          "d",
+          "c",
+          "jusqu",
+          "quoiqu",
+          "lorsqu",
+          "puisqu"
+        ]
+      },
+      "irish_elision": {
+        "type": "elision",
+        "articles": [
+          "h",
+          "n",
+          "t"
+        ]
+      },
+      "italian_elision": {
+        "type": "elision",
+        "articles": [
+          "c",
+          "l",
+          "all",
+          "dall",
+          "dell",
+          "nell",
+          "sull",
+          "coll",
+          "pell",
+          "gl",
+          "agl",
+          "dagl",
+          "degl",
+          "negl",
+          "sugl",
+          "un",
+          "m",
+          "t",
+          "s",
+          "v",
+          "d"
+        ]
+      }
+    },
+    "analyzer": {
+      "text_base": {
+        "char_filter":  [ "html_strip" ],
+        "filter": [
+          "cjk_width",
+          "lowercase",
+          "i18n-stop-words-filter"
+        ],
+        "tokenizer": "standard"
+      },
+      "text_stem": {
+        "char_filter":  [ "html_strip" ],
+        "filter": [
+          "cjk_width",
+          "lowercase",
+          "i18n-stop-words-filter",
+          "i18n-stem-filter"
+        ],
+        "tokenizer": "standard"
+      },
+      "main_analyzer": {
+        "tokenizer": "main_tokenizer",
+        "char_filter":  [ "html_strip" ],
+        "filter": [
+          "cjk_width",
+          "lowercase",
+          "i18n-stop-words-filter"
+        ]
+      },
+      "metadata_analyzer": {
+        "tokenizer": "metadata_tokenizer",
+        "filter": [
+          "cjk_width",
+          "lowercase",
+          "ascii_folding"
+        ]
+      },
+      "phrase_shingle_analyzer": {
+        "char_filter":  [ "html_strip" ],
+        "filter": [
+          "cjk_width",
+          "lowercase",
+          "i18n-stop-words-filter",
+          "phrase_shingle"
+        ],
+        "tokenizer": "standard"
+      },
+      "keyword_base": {
+        "filter": [
+          "cjk_width",
+          "lowercase",
+          "i18n-stop-words-filter"
+        ],
+        "tokenizer": "keyword"
+      },
+      "stemmed_and_unstemmed": {
+        "char_filter":  [ "html_strip" ],
+        "type": "custom",
+        "tokenizer": "standard",
+        "filter": [
+          "lowercase",
+          "keyword_repeat",
+          "porter_stem",
+          "unique_stem"
+        ]
+      },
+      "path_hierarchy_analyzer": {
+        "tokenizer": "path_hierarchy_tokenizer",
+        "filter": [
+          "lowercase"
+        ]
+      },
+      "category_path_analyzer": {
+        "tokenizer": "category_path_tokenizer",
+        "filter": [
+          "lowercase"
+        ]
+      }
+    },
+    "tokenizer": {
+      "path_hierarchy_tokenizer": {
+        "type": "path_hierarchy",
+        "replacement": "/",
+        "skip": 0
+      },
+      "category_path_tokenizer": {
+        "type": "path_hierarchy",
+        "delimiter": ">",
+        "replacement": "/",
+        "skip": 1
+      },
+      "main_tokenizer": {
+        "type": "edge_ngram",
+        "min_gram": 1,
+        "max_gram": 12,
+        "token_chars": [
+          "letter",
+          "digit"
+        ]
+      },
+      "metadata_tokenizer": {
+        "type": "edge_ngram",
+        "min_gram": 1,
+        "max_gram": 12,
+        "token_chars": [
+          "letter",
+          "digit"
+        ]
+      }
+    }
+  }
+}

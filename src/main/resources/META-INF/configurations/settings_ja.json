@@ -1,0 +1,14 @@
+{
+  "requires": "analysis-kuromoji",
+  "tokenizer": {
+    "ja_tokenizer": {
+      "type": "kuromoji_tokenizer",
+      "mode": "extended"
+    }
+  },
+  "analyzer": "kuromoji",
+  "stopwords": {
+    "type": "ja_stop"
+  },
+  "stemmer": "kuromoji_stemmer"
+}
