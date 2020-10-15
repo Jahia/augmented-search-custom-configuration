@@ -66,6 +66,10 @@
         <developerConnection>scm:dummy:uri</developerConnection>
     </scm>
 
+    <properties>
+        <jahia-module-signature>MC0CFQCPbx1YIT+F8TiAkKS1O9gfnL/L0AIUEjMTytG4A+hOCo2n/SSjyLd5Ja4=</jahia-module-signature>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.jahia.modules</groupId>
