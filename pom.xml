@@ -103,7 +103,7 @@
                 <configuration>
                     <instructions>
                         <_dsannotations>*</_dsannotations>
-                        <Jahia-Depends>default</Jahia-Depends>
+                        <Jahia-Depends>default,augmented-search</Jahia-Depends>
                         <Import-Package>
                             org.jahia.modules.augmentedsearch.settings,
                             ${jahia.plugin.projectPackageImport},
