@@ -1,9 +1,5 @@
 {
   "properties": {
-    "jgql:customProp": {
-      "type": "keyword",
-      "store": true
-    },
     "jgql:link": {
       "type": "keyword",
       "store": true
@@ -32,17 +28,21 @@
               "type": "keyword"
             },
             "key": {
-              "type": "keyword"
+              "type": "keyword",
+              "store": true
             },
             "title": {
               "type": "keyword",
+              "store": true,
               "copy_to": [
                 "jgql:metadata",
-                "jgql:categories"
+                "jgql:categories",
+                "jgql:categories_keyword"
               ]
             },
             "path": {
               "type": "text",
+              "store": true,
               "copy_to": [
                 "jgql:categories_path"
               ]
@@ -58,17 +58,21 @@
           "type": "keyword"
         },
         "key": {
-          "type": "keyword"
+          "type": "keyword",
+          "store": true
         },
         "title": {
           "type": "keyword",
+          "store": true,
           "copy_to": [
             "jgql:metadata",
-            "jgql:categories"
+            "jgql:categories",
+            "jgql:categories_keyword"
           ]
         },
         "path": {
           "type": "text",
+          "store": true,
           "copy_to": [
             "jgql:categories_path"
           ]
@@ -83,13 +87,23 @@
     },
     "jgql:categories_path": {
       "type": "text",
+      "analyzer": "category_path_analyzer",
+      "store": true,
+      "fielddata": true
+    },
+    "jgql:categories": {
+      "type": "text",
+      "store": true,
       "fields": {
-        "facet": {
-          "type":  "text",
-          "analyzer": "category_path_analyzer",
-          "fielddata": "true"
+        "keyword": {
+          "type": "keyword",
+          "store": true
         }
       }
+    },
+    "jgql:categories_keyword": {
+      "type": "keyword",
+      "store": true
     },
     "jgql:tags": {
       "copy_to": "jgql:metadata"
@@ -217,6 +231,9 @@
           "type": "keyword"
         }
       }
+    },
+    "jgql:workspace": {
+      "type": "keyword"
     }
   }
 }

@@ -42,10 +42,6 @@
         "type": "stop",
         "stopwords": "_english_"
       },
-      "custom-filter": {
-        "type": "stop",
-        "stopwords": "_english_"
-      },
       "i18n-stem-filter": {
         "type": "stemmer",
         "name": "english"
@@ -208,10 +204,7 @@
         ]
       },
       "category_path_analyzer": {
-        "tokenizer": "category_path_tokenizer",
-        "filter": [
-          "lowercase"
-        ]
+        "tokenizer": "category_path_tokenizer"
       }
     },
     "tokenizer": {
@@ -224,7 +217,7 @@
         "type": "path_hierarchy",
         "delimiter": ">",
         "replacement": "/",
-        "skip": 1
+        "skip": 0
       },
       "main_tokenizer": {
         "type": "edge_ngram",
