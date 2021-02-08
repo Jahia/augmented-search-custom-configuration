@@ -9,6 +9,10 @@ This module can be used to provide custom mappings and settings for Augmented Se
 
 To do so simply modify `./src/resources/META-INF/configurations/[mappings|settings].json` files accordingly and deploy the module.
 
+## Augmented Search versions
+
+Augmented Search 1.5x and 3.1x introduced a new mapping and new settings for Elasticsearch. 
+If you're using an older version of Augmented Search, you please use the mapping and settings files [available here](https://github.com/Jahia/augmented-search-custom-configuration/tree/18a16d5244854127883be5c5642c2f0ca02b54b2/src/main/resources/META-INF/configurations).
 
 ## Links
 You can find more details about Augmented-Search [on the Academy](https://academy.jahia.com/documentation/developer#augmented-search)
