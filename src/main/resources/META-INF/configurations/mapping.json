@@ -29,15 +29,17 @@
             },
             "key": {
               "type": "keyword",
-              "store": true
+              "store": true,
+              "copy_to": [
+                "jgql:categories",
+                "jgql:categories_keyword"
+              ]
             },
             "title": {
               "type": "keyword",
               "store": true,
               "copy_to": [
-                "jgql:metadata",
-                "jgql:categories",
-                "jgql:categories_keyword"
+                "jgql:metadata"
               ]
             },
             "path": {
@@ -59,15 +61,17 @@
         },
         "key": {
           "type": "keyword",
-          "store": true
+          "store": true,
+          "copy_to": [
+            "jgql:categories",
+            "jgql:categories_keyword"
+          ]
         },
         "title": {
           "type": "keyword",
           "store": true,
           "copy_to": [
-            "jgql:metadata",
-            "jgql:categories",
-            "jgql:categories_keyword"
+            "jgql:metadata"
           ]
         },
         "path": {

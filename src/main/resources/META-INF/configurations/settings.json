@@ -1,31 +1,31 @@
 {
-  "search" : {
-    "slowlog" : {
-      "level" : "debug",
-      "threshold" : {
-        "fetch" : {
-          "warn" : "1000ms",
-          "trace" : "200ms",
-          "debug" : "300ms",
-          "info" : "800ms"
+  "search": {
+    "slowlog": {
+      "level": "debug",
+      "threshold": {
+        "fetch": {
+          "warn": "1000ms",
+          "trace": "200ms",
+          "debug": "300ms",
+          "info": "800ms"
         },
-        "query" : {
-          "warn" : "2000ms",
-          "trace" : "500ms",
-          "debug" : "1000ms",
-          "info" : "1500ms"
+        "query": {
+          "warn": "2000ms",
+          "trace": "500ms",
+          "debug": "1000ms",
+          "info": "1500ms"
         }
       }
     }
   },
-  "indexing" : {
-    "slowlog" : {
-      "threshold" : {
-        "index" : {
-          "warn" : "10s",
-          "trace" : "500ms",
-          "debug" : "2s",
-          "info" : "5s"
+  "indexing": {
+    "slowlog": {
+      "threshold": {
+        "index": {
+          "warn": "10s",
+          "trace": "500ms",
+          "debug": "2s",
+          "info": "5s"
         }
       }
     }
@@ -133,7 +133,9 @@
     },
     "analyzer": {
       "text_base": {
-        "char_filter":  [ "html_strip" ],
+        "char_filter": [
+          "html_strip"
+        ],
         "filter": [
           "cjk_width",
           "lowercase",
@@ -142,7 +144,9 @@
         "tokenizer": "standard"
       },
       "text_stem": {
-        "char_filter":  [ "html_strip" ],
+        "char_filter": [
+          "html_strip"
+        ],
         "filter": [
           "cjk_width",
           "lowercase",
@@ -153,7 +157,9 @@
       },
       "main_analyzer": {
         "tokenizer": "main_tokenizer",
-        "char_filter":  [ "html_strip" ],
+        "char_filter": [
+          "html_strip"
+        ],
         "filter": [
           "cjk_width",
           "lowercase",
@@ -169,7 +175,9 @@
         ]
       },
       "phrase_shingle_analyzer": {
-        "char_filter":  [ "html_strip" ],
+        "char_filter": [
+          "html_strip"
+        ],
         "filter": [
           "cjk_width",
           "lowercase",
@@ -187,7 +195,9 @@
         "tokenizer": "keyword"
       },
       "stemmed_and_unstemmed": {
-        "char_filter":  [ "html_strip" ],
+        "char_filter": [
+          "html_strip"
+        ],
         "type": "custom",
         "tokenizer": "standard",
         "filter": [
