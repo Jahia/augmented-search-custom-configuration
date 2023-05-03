@@ -5,6 +5,14 @@
             <id>jahia-internal-repository</id>
             <repositories>
                 <repository>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                    <id>central</id>
+                    <name>Central Repository</name>
+                    <url>https://repo.maven.apache.org/maven2</url>
+                </repository>            
+                <repository>
                     <id>jahia-internal</id>
                     <name>Jahia Internal Repository</name>
                     <url>https://devtools.jahia.com/nexus/content/groups/internal</url>
@@ -51,5 +59,15 @@
             <username>${env.NEXUS_USERNAME}</username>
             <password>${env.NEXUS_PASSWORD}</password>
         </server>
+        <server>
+            <id>augmented-search-releases</id>
+            <username>${env.NEXUS_USERNAME}</username>
+            <password>${env.NEXUS_PASSWORD}</password>
+        </server>
+        <server>
+            <id>augmented-search-snapshots</id>
+            <username>${env.NEXUS_USERNAME}</username>
+            <password>${env.NEXUS_PASSWORD}</password>
+        </server>        
     </servers>
 </settings>
