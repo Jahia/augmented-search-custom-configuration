@@ -15,11 +15,16 @@
         "jgql:tags": {
           "copy_to": "jgql:metadata"
         },
-        "jgql:displayableName": {
+        "jgql:title": {
           "copy_to": "jgql:main"
         },
         "jgql:nodeType": {
           "copy_to": "jgql:agg_node_types"
+        },
+        "jgql:displayableName": {
+          "type": "text",
+          "analyzer": "keyword_base",
+          "store": true
         },
         "jgql:categorized": {
           "type": "nested",
@@ -108,7 +113,7 @@
     "jgql:tags": {
       "copy_to": "jgql:metadata"
     },
-    "jgql:displayableName": {
+    "jgql:title": {
       "copy_to": "jgql:main"
     },
     "jgql:nodePath": {
