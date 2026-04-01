@@ -16,7 +16,7 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
 /**
- * Augment search configuration provider
+ * Provides custom mappings and settings for Augmented Search indexation
  */
 @Component(service = ESConfigService.class, immediate = true)
 public class CustomConfiguration implements ESConfigService {
@@ -39,38 +39,40 @@ public class CustomConfiguration implements ESConfigService {
 
     @Override
     public JSONObject getMappings() {
-        URL configResourceURL = context.getBundle().getResource(CONFIG_LOCATION + "/mapping.json");
-        if (configResourceURL != null) {
-            try {
-                return new JSONObject(IOUtils.toString(new InputStreamReader(configResourceURL.openStream(), StandardCharsets.UTF_8)));
-            } catch (JSONException | IOException e) {
-                logger.error("Failed to read mappings file: {}", e.getMessage());
-            }
-        }
-        return null;
+        return getConfigResource("/mapping.json");
     }
 
     @Override
     public JSONObject getSettings() {
-        URL configResourceURL = context.getBundle().getResource(CONFIG_LOCATION + "/settings.json");
-        if (configResourceURL != null) {
-            try {
-                return new JSONObject(IOUtils.toString(new InputStreamReader(configResourceURL.openStream(), StandardCharsets.UTF_8)));
-            } catch (JSONException | IOException e) {
-                logger.error("Failed to read settings file: {}", e.getMessage());
-            }
-        }
+        return getConfigResource("/settings.json");
+    }
+
+    @Override
+    public JSONObject getFileMappings() {
+        // Default file mappings will be used when returning null
+        return null;
+    }
+
+    @Override
+    public JSONObject getFileSettings() {
+        // Default file settings will be used when returning null
         return null;
     }
 
     @Override
     public JSONObject getSettingsForLanguage(String language) {
-        URL configResourceURL = context.getBundle().getResource(CONFIG_LOCATION + "/settings_" + language + ".json" );
+        return ("ja".equals(language) || "pl".equals(language)) ?
+                getConfigResource(String.format("/settings_%s.json", language)) : null;
+    }
+
+    protected final JSONObject getConfigResource(String resourcePath) {
+        URL configResourceURL = context.getBundle().getResource(CONFIG_LOCATION + resourcePath);
         if (configResourceURL != null) {
             try {
                 return new JSONObject(IOUtils.toString(new InputStreamReader(configResourceURL.openStream(), StandardCharsets.UTF_8)));
             } catch (JSONException | IOException e) {
-                logger.error("Failed to read settings file: {}", e.getMessage());
+                logger.error("Failed to read custom configuration file for resourcePath {}: {}",
+                        CONFIG_LOCATION + resourcePath, e.getMessage());
             }
         }
         return null;
