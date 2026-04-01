@@ -7,24 +7,24 @@
     "jgql:nodes": {
       "properties": {
         "jgql:all": {
+          "type": "text",
           "copy_to": "jgql:content"
         },
         "jgql:keywords": {
+          "type": "keyword",
           "copy_to": "jgql:metadata"
         },
         "jgql:tags": {
+          "type": "keyword",
           "copy_to": "jgql:metadata"
         },
         "jgql:title": {
+          "type": "text",
           "copy_to": "jgql:main"
         },
         "jgql:nodeType": {
-          "copy_to": "jgql:agg_node_types"
-        },
-        "jgql:displayableName": {
           "type": "text",
-          "analyzer": "keyword_base",
-          "store": true
+          "copy_to": "jgql:agg_node_types"
         },
         "jgql:categorized": {
           "type": "nested",
@@ -85,9 +85,11 @@
       }
     },
     "jgql:all": {
+      "type": "text",
       "copy_to": "jgql:content"
     },
     "jgql:keywords": {
+      "type": "keyword",
       "copy_to": "jgql:metadata"
     },
     "jgql:categories_path": {
@@ -111,12 +113,15 @@
       "store": true
     },
     "jgql:tags": {
+      "type": "keyword",
       "copy_to": "jgql:metadata"
     },
     "jgql:title": {
+      "type": "text",
       "copy_to": "jgql:main"
     },
     "jgql:nodePath": {
+      "type": "keyword",
       "fields": {
         "hierarchy": {
           "type": "text",
@@ -125,6 +130,7 @@
       }
     },
     "jgql:nodeType": {
+      "type": "keyword",
       "copy_to": "jgql:agg_node_types"
     },
     "jgql:agg_node_types": {
@@ -231,6 +237,7 @@
       }
     },
     "jgql:mimeType": {
+      "type": "text",
       "fields": {
         "keyword": {
           "type": "keyword"
