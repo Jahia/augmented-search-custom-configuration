@@ -11,6 +11,8 @@ To do so simply modify `./src/resources/META-INF/configurations/[mappings|settin
 
 ## Augmented Search versions
 
+Use `master` branch for overriding augmented-search 4.x with Jahia 8.2 and elasticsearch 9. Use `1_x` branch for overriding augmented-search 3.x with > Jahia 8.1 and elasticsearch 7.
+
 Augmented Search 1.5x and 3.1x introduced a new mapping and new settings for Elasticsearch. 
 If you're using an older version of Augmented Search, you please use the mapping and settings files [available here](https://github.com/Jahia/augmented-search-custom-configuration/tree/18a16d5244854127883be5c5642c2f0ca02b54b2/src/main/resources/META-INF/configurations).
 
