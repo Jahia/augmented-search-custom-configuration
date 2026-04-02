@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 /**
  * Provides custom mappings and settings for Augmented Search indexation
@@ -61,7 +62,8 @@ public class CustomConfiguration implements ESConfigService {
 
     @Override
     public JSONObject getSettingsForLanguage(String language) {
-        return ("ja".equals(language) || "pl".equals(language)) ?
+        // Return en to reproduce issue in AS 4.0.0 - See https://github.com/Jahia/jahia-private/issues/4856
+        return (List.of("en", "ja", "pl").contains(language)) ?
                 getConfigResource(String.format("/settings_%s.json", language)) : null;
     }
 
