@@ -6,9 +6,15 @@
       "mode": "extended"
     }
   },
-  "analyzer": "kuromoji",
+  "analyzer": {
+    "type": "kuromoji",
+    "mode": "extended"
+  },
   "stopwords": {
     "type": "ja_stop"
   },
-  "stemmer": "kuromoji_stemmer"
+  "stemmer": {
+    "type": "kuromoji_stemmer",
+    "minimum_length": 2
+  }
 }
